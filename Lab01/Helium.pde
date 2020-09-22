@@ -4,6 +4,7 @@ class Helium{
   PVector acceleration;
   float mass;
   float topSpeed;
+  float r;
   
   Helium(){
   this.location = new PVector(random(width), random(height));
@@ -27,6 +28,7 @@ class Helium{
     
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
+    r = 16/2;
   }
   
   void update () {
@@ -43,17 +45,17 @@ class Helium{
   }
   
    void checkEdges() {
-    if (location.x > width) {
-      location.x = width;
+    if (location.x > width - r) {
+      location.x = width - r;
       velocity.x *= -0.9;
-    } else if (location.x < 0) {
+    } else if (location.x < r) {
       velocity.x *= -0.9;
-      location.x = 0;
+      location.x = r;
     }
     
-    if (location.y < 0) {
+    if (location.y < r) {
       velocity.y *= -0.9;
-      location.y = 0;
+      location.y = r;
     }
   }
   

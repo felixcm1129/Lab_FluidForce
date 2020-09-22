@@ -7,6 +7,8 @@ class Mover {
   float topSpeed;
   float mass;
   
+  float rayon;
+  
   Mover () {
     
     this.location = new PVector (random (width), random (height));    
@@ -32,6 +34,8 @@ class Mover {
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     size = new PVector (16, 16);
+    
+    rayon = (m * 16)/2;
   }
   
   void update () {
@@ -49,17 +53,17 @@ class Mover {
   }
   
   void checkEdges() {
-    if (location.x > width) {
-      location.x = width;
+    if (location.x > width - rayon) {
+      location.x = width - rayon;
       velocity.x *= -0.9;
-    } else if (location.x < 0) {
+    } else if (location.x < rayon) {
       velocity.x *= -0.9;
-      location.x = 0;
+      location.x = rayon;
     }
     
-    if (location.y > height) {
+    if (location.y > height - rayon) {
       velocity.y *= -0.9;
-      location.y = height;
+      location.y = height - rayon;
     }
   }
   
